@@ -19,6 +19,7 @@
                             <th>Email</th>
                             <th>phone</th>
                             <th>Address</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     @foreach ($users as $user)
@@ -29,6 +30,10 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->profile->phone}}</td>
                             <td>{{$user->profile->address}}</td>
+                            <td>
+                                <a href="#"><button type="submit" class="btn btn-info">Edit</button></a>
+                            <a onclick=" return confirm('Are you sure to delete this items?')" href="{{route('delete',$user->id)}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                            </td>
                         </tr>
                     </tbody>
                     @endforeach

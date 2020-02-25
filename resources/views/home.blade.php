@@ -4,6 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <a href="{{'showform'}}" class="btn btn-success">Add Posts</a>
+            <a href="{{'showPost'}}" class="btn btn-success">All Posts</a>
             <div class="card">
                 <div class="card-header">You are logged in as</div>
 
@@ -18,6 +20,8 @@
                         <p>{{$user->id}}</p>
                         <p>{{$user->name}}</p>
                         <p>{{$user->email}}</p>
+                        <p>{{$user->profile->phone}}</p>
+                        <p>{{$user->profile->address}}</p>
                     </tbody>
                     @endforeach
                     
