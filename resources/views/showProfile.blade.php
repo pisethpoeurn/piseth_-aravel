@@ -31,8 +31,12 @@
                             <td>{{$user->profile->phone}}</td>
                             <td>{{$user->profile->address}}</td>
                             <td>
-                                <a href="#"><button type="submit" class="btn btn-info">Edit</button></a>
-                            <a onclick=" return confirm('Are you sure to delete this items?')" href="{{route('delete',$user->id)}}"><button type="submit" class="btn btn-danger">Delete</button></a>
+                            <a href="{{route('showformedit',$user->id)}}"><button class="btn borderless" type="submit">Edit</button></a>
+                            <form action="{{route('delete',$user->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                             <button class="btn borderless" onclick="return confirm('Are you sure to delete.. ?')">delete</button></a>
+                            </form>
                             </td>
                         </tr>
                     </tbody>

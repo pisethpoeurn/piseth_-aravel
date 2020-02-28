@@ -11,9 +11,22 @@
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <form action="#" method="POST">
-                    <input type="text" name="fname">
-                </form>
+                <div class="card">
+                    <div class="card-header">Edit User</div>
+                    <div class="card-body">
+                        {{-- @foreach ($users as $user) --}}
+                            <form action="{{route('updatePrfile',$users->id)}}" method="POST">
+                                    @method('put')
+                                    @csrf
+                                <input type="text" name="fname" value="{{$users->name}}">
+                                <input type="email" name="email" value="{{$users->email}}">
+                                <input type="text" name="phone" value="{{$users->profile->phone}}">
+                                <input type="text" name="address" value="{{$users->profile->address}}">
+                                <button class="btn btn-success">Update</button>
+                            </form>
+                        {{-- @endforeach --}}
+                    </div>
+                </div>
             </div>
             <div class="col-3"></div>
         </div>

@@ -16,14 +16,13 @@
                         </div>
                     @endif
                     
-                    @foreach ($users as $user)
-                        <p>{{$user->id}}</p>
-                        <p>{{$user->name}}</p>
-                        <p>{{$user->email}}</p>
-                        <p>{{$user->profile->phone}}</p>
-                        <p>{{$user->profile->address}}</p>
-                    </tbody>
-                    @endforeach
+                    {{-- @foreach ($users as $user) --}}
+                        <p> ID: {{Auth::id()}}</p>
+                        <p>Name: {{Auth::user()->name}}</p>
+                        <p>Email: {{Auth::user()->email}}</p>
+                        <p>Phone: {{Auth::user()->profile->phone}}</p>
+                        <p>Address: {{Auth::user()->profile->address}}</p>
+                    {{-- @endforeach --}}
                     
                 </div>
             </div>
