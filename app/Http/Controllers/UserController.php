@@ -13,10 +13,10 @@ class UserController extends Controller
 {
     public function addProfile(){
 
-        $users = User::find(1);
+        $users = User::find(2);
         $profile = new Profile;
-        $profile->phone="098765432";
-        $profile->address="Battambang";
+        $profile->phone="0234567";
+        $profile->address="BMC";
         $profile->user_id=$users->id;
         $profile->save();
         return"already add";
@@ -34,14 +34,18 @@ class UserController extends Controller
     public function update(Request $request,$id){
         $users = User::find($id);
         $users ->profile()->update([
-            
+            "name"=>"$users=>$request->get('fname')",
+            "email"=>"$users=>$request->get('email')",
+            "phone"=>"$users=>$request->get('phone')",
+            "address"=>"$users=>$request->get('address')",
         ]);
+        $users->save();
         return redirect('showProfile');
     }
 
     public function delete($id){
-        $users = User::find($id);
-        $users->profile()->delete();
+        $profile = Profile::find($id);
+        $profile->delete();
 
         return redirect('showProfile');
     }
@@ -63,5 +67,14 @@ class UserController extends Controller
     public function showPost(){
         $posts = Post::all();
         return view('post',compact('posts'));
+    }
+
+    public function showFormEditPost($id){
+        $posts = Post::find($id);
+        return view('formeditpost',compact('posts'));
+    }
+
+    public function updatePost(){
+        
     }
 }

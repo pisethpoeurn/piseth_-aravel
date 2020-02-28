@@ -12,15 +12,13 @@
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="card">
-                    <div class="card-header">Edit User</div>
+                    <div class="card-header">Edit Post</div>
                     <div class="card-body">
-                            <form action="{{route('updatePrfile',$users->id)}}" method="POST">
+                            <form action="#" method="POST">
                                     @method('put')
                                     @csrf
-                                <input type="text" name="fname" value="{{$users->name}}">
-                                <input type="email" name="email" value="{{$users->email}}">
-                                <input type="text" name="phone" value="{{$users->profile->phone}}">
-                                <input type="text" name="address" value="{{$users->profile->address}}">
+                                <input type="text" name="title" value="{{$posts->title}}">
+                                <input type="email" name="body" value="{{$posts->body}}">
                                 <button class="btn btn-success">Update</button>
                             </form>
                     </div>

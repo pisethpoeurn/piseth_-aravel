@@ -27,7 +27,7 @@
                             <td>{{$post->title}}</td>
                             <td>{{$post->body}}</td>
                             <td>
-                                <a href="#"><button type="button" class="btn btn-success">edit</button></a>
+                                <a href="{{route('showformeditpost',$post->id)}}"><button type="button" class="btn btn-success">edit</button></a>
                                 <a onclick="return confirm('Are you sure to delete.. ?')"  
                                 href="#"><button type="button" class="btn btn-danger">delete</button></a>
                             </td>
