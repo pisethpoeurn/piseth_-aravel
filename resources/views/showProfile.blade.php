@@ -1,3 +1,5 @@
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +33,8 @@
                             <td>{{$user->profile->phone}}</td>
                             <td>{{$user->profile->address}}</td>
                             <td>
-                            <a href="{{route('showformedit',$user->id)}}"><button class="btn borderless" type="submit">Edit</button></a>
-                            <form action="{{route('delete',$user->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                             <button class="btn borderless" onclick="return confirm('Are you sure to delete.. ?')">delete</button></a>
-                            </form>
+                            <a href="{{route('showformedit',$user->id)}}">Edit</button></a>||
+                            <a href="{{route('delete',$user->id)}}">Delete</button></a>
                             </td>
                         </tr>
                     </tbody>
@@ -47,3 +45,4 @@
     </div>
 </body>
 </html>
+@endsection

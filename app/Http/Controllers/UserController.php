@@ -6,20 +6,13 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Profile;
 use App\Post;
-use App\Auth;
+use Auth;
 
 
 class UserController extends Controller
 {
-    public function addProfile(){
-
-        $users = User::find(2);
-        $profile = new Profile;
-        $profile->phone="0234567";
-        $profile->address="BMC";
-        $profile->user_id=$users->id;
-        $profile->save();
-        return"already add";
+    public function addformprofile(){
+        return view('addProfile');
     }
 
     public function showProfile(){
@@ -33,19 +26,18 @@ class UserController extends Controller
 
     public function update(Request $request,$id){
         $users = User::find($id);
-        $users ->profile()->update([
-            "name"=>"$users=>$request->get('fname')",
-            "email"=>"$users=>$request->get('email')",
-            "phone"=>"$users=>$request->get('phone')",
-            "address"=>"$users=>$request->get('address')",
-        ]);
+        $users->name=$request->get('name');
+        $users->email=$request->get('email');
+        $users->profile->phone=$request->get('phone');
+        $users->profile->address=$request->get('address');
+        $users->profile->save();
         $users->save();
         return redirect('showProfile');
     }
 
     public function delete($id){
-        $profile = Profile::find($id);
-        $profile->delete();
+        $users = User::find($id);
+        $users->delete();
 
         return redirect('showProfile');
     }
@@ -54,7 +46,7 @@ class UserController extends Controller
         return view('addPost');
     }
     public function addPosts(Request $request , $id){
-        $users = User::find(Auth::find($id));
+        $users = User::find(Auth::user()->$id);
         $post = new Post();
         $post->title=$request->get('title');
         $post->body=$request->get('body');
@@ -74,7 +66,18 @@ class UserController extends Controller
         return view('formeditpost',compact('posts'));
     }
 
-    public function updatePost(){
-        
+    public function updatePost($id , Request $request){
+        $posts = Post::find($id);
+        $posts->title=$request->get('title');
+        $posts->body=$request->get('body');
+        $posts->save();
+        return redirect('showPost');
+    }
+
+    public function deletePost($id){
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect('showPost');
     }
 }

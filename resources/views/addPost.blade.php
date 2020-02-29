@@ -1,9 +1,57 @@
 
-<h1>This is form Add Post</h1>
-<link rel="stylesheet" href="css/app.css">
-<form action="{{route('addPosts','id')}}" method="POST">
-    @csrf
-    <input type="text" placeholder="title" name="title"><br>
-    <input type="text" placeholder="body" name="body">
-    <button type="submit">add</button>
-</form>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Add Posts') }}</div>
+
+                <div class="card-body">
+                    <form method="POST" action="{{route('addPosts','id')}}">
+                        @csrf
+                        {{-- @method('put') --}}
+
+                        <div class="form-group row">
+                            <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="name" autofocus>
+
+                                @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="body" class="col-md-4 col-form-label text-md-right">{{ __('Body') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="body" type="body" class="form-control @error('body') is-invalid @enderror" name="body" required autocomplete="email">
+
+                                @error('body')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Add') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

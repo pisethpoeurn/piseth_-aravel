@@ -1,4 +1,7 @@
 
+
+@extends('layouts.app')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +15,13 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-border">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
                             <th>Body</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     @foreach ($posts as $post)
@@ -27,9 +31,8 @@
                             <td>{{$post->title}}</td>
                             <td>{{$post->body}}</td>
                             <td>
-                                <a href="{{route('showformeditpost',$post->id)}}"><button type="button" class="btn btn-success">edit</button></a>
-                                <a onclick="return confirm('Are you sure to delete.. ?')"  
-                                href="#"><button type="button" class="btn btn-danger">delete</button></a>
+                                <a href="{{route('showformeditpost',$post->id)}}">edit</button></a>||
+                                <a onclick="return confirm('Are you sure to delete.. ?')"href="{{route('deletePost',$post->id)}}">delete</button></a>
                             </td>
                         </tr>
                     </tbody>
@@ -40,3 +43,4 @@
     </div>
 </body>
 </html>
+@endsection
